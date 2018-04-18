@@ -1,7 +1,6 @@
-2
+options(shiny.sanitize.errors = FALSE)
 shinyServer(function(input,output){
   library(quantmod)
-  #library(Qaundl)
   library(ggplot2)
   output$plot <- renderPlot({
     stock_price = getSymbols(input$stockid, auto.assign = FALSE)
@@ -45,16 +44,22 @@ shinyServer(function(input,output){
   })
   output$plot2 <- renderPlot({
     SP500 = getSymbols("^GSPC", auto.assign = FALSE, from= input$dates[1], to= input$dates[2])
-    chartSeries(SP500, theme= "white")
-    })
+    if(input$dates[2]-input$dates[1]<5){
+      chartSeries(SP500, theme="white")}
+    else{chartSeries(SP500, theme= "white")
+      plot(addSMA(n=5))
+    }})
   output$tab2 <- renderTable({
     SP500 = getSymbols("^GSPC", auto.assign = FALSE, from= input$dates[1], to= input$dates[2])
     print(SP500)
   })
   output$plot3 <- renderPlot({
     TWII = getSymbols("^TWII", auto.assign= FALSE, from= input$dates2[1], to= input$dates2[2])
-    chartSeries(TWII, theme= "white")
-  })
+    if(input$dates2[2]-input$dates2[1]<5){
+      chartSeries(TWII, theme= "white")}
+    else{chartSeries(TWII, theme= "white")
+      plot(addSMA(n=5))
+  }})
   output$tab3 <- renderTable({
     TWII = getSymbols("^TWII", auto.assign= FALSE, from= input$dates2[1], to= input$dates2[2])
     print(TWII)
