@@ -17,7 +17,7 @@ shinyUI(fluidPage(
                       mainPanel(h2("S&P 500"),plotOutput("plot2"),tableOutput("tab2"))),
              tabPanel("TSEC Weighted Index",
                       sidebarPanel(
-                        dateRangeInput("dates","Date Range:",start= "2015-01-01", end=as.character(Sys.Date()))),
+                        dateRangeInput("dates2","Date Range:",start= "2015-01-01", end=as.character(Sys.Date()))),
                       mainPanel(h2("TSEC Weighted Index"),plotOutput("plot3"),tableOutput("tab3"))),
              tabPanel("Machine Learning Prediction",
                       mainPanel(h1("Coming Soon.")))
