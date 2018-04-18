@@ -1,4 +1,4 @@
-
+2
 shinyServer(function(input,output){
   library(quantmod)
   #library(Qaundl)
@@ -52,11 +52,11 @@ shinyServer(function(input,output){
     print(SP500)
   })
   output$plot3 <- renderPlot({
-    TWII = getSymbols("^TWII", auto.assign= FALSE, from= input$dates[1], to= input$dates[2])
+    TWII = getSymbols("^TWII", auto.assign= FALSE, from= input$dates2[1], to= input$dates2[2])
     chartSeries(TWII, theme= "white")
   })
   output$tab3 <- renderTable({
-    TWII = getSymbols("^TWII", auto.assign= FALSE, from= input$dates[1], to= input$dates[2])
+    TWII = getSymbols("^TWII", auto.assign= FALSE, from= input$dates2[1], to= input$dates2[2])
     print(TWII)
   })
 })
